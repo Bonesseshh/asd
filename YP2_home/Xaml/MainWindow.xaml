@@ -1,0 +1,36 @@
+﻿<Window x:Class="YP2_home.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YP2_home"
+        mc:Ignorable="d"
+        Title="Authentication" Height="300" Width="500">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <local:VM_Auth x:Key="cooks"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource cooks}" Background="#FFECF9F9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Content="Введите логин:" FontSize="18" Grid.Column="1" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment ="Center"  Width="172" Height="35" FontFamily="Cascadia Code"/>
+        <TextBox Name="textBox_Login" Text="{Binding Login}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="356" Height="30"/>
+        <Label Content="Введите пароль:" FontSize="18" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment ="Center"  Width="172" Height="35" FontFamily="Cascadia Code"/>
+        <TextBox Name="textBox_Password" Text="{Binding Password}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="356" Height="30" Background="White"/>
+        <Button Name="button_Auto_ready" Command="{Binding Auth}" Content="Войти" FontSize="18" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontFamily="Cascadia Code" BorderBrush="#FFD0D0D0" Background="#FFD4FFD5"/>
+
+    </Grid>
+</Window>

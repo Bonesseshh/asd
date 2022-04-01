@@ -1,0 +1,75 @@
+﻿<Window x:Class="YP2_home.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YP2_home"
+        mc:Ignorable="d"
+        Title="Cooker" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <local:CooksVM x:Key="cooks"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource cooks}" Background="#FFE7F9E1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="97*" />
+            <ColumnDefinition Width="103*" />
+        </Grid.ColumnDefinitions>
+        <ListBox  
+            Grid.Column="0" 
+            ItemsSource="{Binding ColOrders, UpdateSourceTrigger=PropertyChanged}" 
+            SelectedItem="{Binding SelectedOrder}" Margin="0,0,0,217" Background="#FFE7F9E1" FontFamily="Cascadia Code">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:Name="dt1">
+                    <StackPanel Name="st2" Margin="10">
+                        <TextBlock Text="Номер и статус заказа:"/>
+                        <TextBlock  FontSize="15" Text="{Binding Path=OrderId, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="{Binding Path=IdStatusNavigation.NameStatus, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox
+            Name="lb1"
+            Margin="0,217,0,0"
+            Grid.Column="0"
+            ItemsSource="{Binding NewOrders, UpdateSourceTrigger=PropertyChanged}" Background="#FFCBEAF7" FontFamily="Cascadia Code"
+            >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10">
+                        <TextBlock 
+                            Text="Номер и статус заказа:"/>
+                        <TextBlock 
+                            Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock 
+                            Text="{Binding IdStatusNavigation.NameStatus, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel DataContext="{Binding SelectedOrder}" 
+                    Margin="386,0,2,222" Grid.ColumnSpan="2" Background="#FFCBEAF7">
+            <TextBlock Text="Выбранный заказ" Width="126" FontFamily="Cascadia Code"  />
+            <TextBlock x:Name="tb1" Text="Номер: " Width="60" FontFamily="Cascadia Code" />
+            <TextBox x:Name="tb2" 
+                     Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}" Width="286" />
+            <TextBlock 
+                Text="Статус: " Width="53" FontFamily="Cascadia Code" />
+            <TextBox 
+                Text="{Binding IdStatusNavigation.NameStatus, UpdateSourceTrigger=PropertyChanged}" Width="288" />
+        </StackPanel>
+        <StackPanel Grid.RowSpan="1" Margin="106,109,106,260" Grid.Column="1">
+            <Button Height="41" 
+                    Width="126"
+                    Command="{Binding Sort}"
+                    Content="Изменить статус" Background="#FFE8F3CC" FontFamily="Cascadia Code"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
