@@ -44,11 +44,58 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Content="Введите логин:" FontSize="18" Grid.Column="1" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" VerticalAlignment ="Center"  Width="172" Height="35" FontFamily="Cascadia Code"/>
-        <TextBox Template="{DynamicResource TextBoxTemplate1}" Name="textBox_Login" Text="{Binding Login}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="230" Height="30"/>
-        <Label Content="Введите пароль:" FontSize="18" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment ="Center"  Width="172" Height="35" FontFamily="Cascadia Code"/>
-        <TextBox Name="textBox_Password" Text="{Binding Password}" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="230" Height="30" Background="White" Template="{DynamicResource TextBoxTemplate1}"/>
-        <Button Name="button_Auto_ready" Command="{Binding Auth}" Content="Войти" FontSize="18" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" Height="35" FontFamily="Cascadia Code" BorderBrush="#FFD0D0D0" Background="#FFD4FFD5"/>
+        <Label Content="Введите логин:" 
+               FontSize="18"
+               Grid.Column="1"
+               HorizontalContentAlignment="Center"
+               HorizontalAlignment="Center"
+               VerticalAlignment ="Center" 
+               Width="172" Height="35" 
+               FontFamily="Cascadia Code"/>
+        <TextBox 
+            Template="{DynamicResource TextBoxTemplate1}" 
+            Name="textBox_Login"
+            Text="{Binding Login}"
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="230" 
+            Height="30"/>
+        <Label 
+            Content="Введите пароль:" 
+            FontSize="18" 
+            Grid.Row="2" 
+            Grid.Column="1" 
+            HorizontalContentAlignment="Center" 
+            HorizontalAlignment="Center"
+            VerticalAlignment ="Center" 
+            Width="172" 
+            Height="35" 
+            FontFamily="Cascadia Code"/>
+        <TextBox Name="textBox_Password"
+                 Text="{Binding Password}" 
+                 Grid.Row="3" 
+                 Grid.Column="1"
+                 HorizontalAlignment="Center" 
+                 VerticalAlignment="Center" 
+                 Width="230"
+                 Height="30" 
+                 Background="White" 
+                 Template="{DynamicResource TextBoxTemplate1}"/>
+        <Button Name="button_Auto_ready" 
+                Command="{Binding Auth}" 
+                Content="Войти" 
+                FontSize="18" 
+                Grid.Row="4" 
+                Grid.Column="1" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="140"
+                Height="35" 
+                FontFamily="Cascadia Code" 
+                BorderBrush="#FFD0D0D0"
+                Background="#FFD4FFD5"/>
         <Image Source="/Xaml/Логотип-кафе.png" Margin="8,0,384,55" Grid.RowSpan="3"></Image>
     </Grid>
 </Window>
