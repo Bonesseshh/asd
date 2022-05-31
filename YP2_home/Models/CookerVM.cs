@@ -4,27 +4,25 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace YP2_home;
 
-public class CooksVM : ViewModelCafe 
+public class CookerVM : ViewModelBase 
 {
     private ObservableCollection<Order> selOrder = new (Helper.db.Orders.Include(x => x.IdStatusNavigation).Where(x => x.IdStatus == 3 || x.IdStatus == 2));
-    private RelayCommand sort;
+    private RelayCommand _sort;
     private ObservableCollection<Order> orders = new(Helper.db.Orders.Include(x => x.IdStatusNavigation).Where(x => x.IdStatus == 4));
-    private Order selorder;   
-    public RelayCommand Sort
-    {
-        get
-        {
-            return sort ??
-                   (sort = new RelayCommand((x) =>
+    private Order _selorder;
+    public RelayCommand Sort => _sort ??
+                   (_sort = new RelayCommand((x) =>
                    {
-                       var order_st = SelectedOrder;
+                       Order? order_st = SelectedOrder;
                        if (order_st == null)
                        {
+                           MessageBox.Show("Выберите заказ!");
                            return;
                        }
 
@@ -38,17 +36,14 @@ public class CooksVM : ViewModelCafe
                                .Where(x => x.IdStatus == 4));
                            OnPropertyChanged();
                        }
-                       
-                   }));
-        }
 
-    } 
+                   }));
     public Order SelectedOrder
     {
-        get => selorder;
+        get => _selorder;
         set
         {
-            selorder = value;
+            _selorder = value;
             OnPropertyChanged();
         }
     }

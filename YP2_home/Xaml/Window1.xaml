@@ -13,7 +13,7 @@
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="14" />
         </Style>
-        <local:CooksVM x:Key="cooks"/>
+        <local:CookerVM x:Key="cooks"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource cooks}" Background="#FFE7F9E1">
         <Grid.ColumnDefinitions>
@@ -21,9 +21,9 @@
             <ColumnDefinition Width="103*" />
         </Grid.ColumnDefinitions>
         <ListBox  
-            Grid.Column="0" 
+            Grid.Column="1" 
             ItemsSource="{Binding ColOrders, UpdateSourceTrigger=PropertyChanged}" 
-            SelectedItem="{Binding SelectedOrder}" Margin="0,0,0,217" Background="#FFE7F9E1" FontFamily="Cascadia Code">
+            SelectedItem="{Binding SelectedOrder}" Margin="0,0,0,217" Background="#FFE7F9E1" FontFamily="Cascadia Code" BorderBrush="{x:Null}">
             <ListBox.ItemTemplate>
                 <DataTemplate x:Name="dt1">
                     <StackPanel Name="st2" Margin="10">
@@ -36,9 +36,9 @@
         </ListBox>
         <ListBox
             Name="lb1"
-            Margin="0,217,0,0"
-            Grid.Column="0"
-            ItemsSource="{Binding NewOrders, UpdateSourceTrigger=PropertyChanged}" Background="#FFCBEAF7" FontFamily="Cascadia Code"
+            Margin="0,192,0,5"
+            Grid.Column="1"
+            ItemsSource="{Binding NewOrders, UpdateSourceTrigger=PropertyChanged}" Background="#FFCBEAF7" FontFamily="Cascadia Code" HorizontalAlignment="Center" Width="412" BorderBrush="{x:Null}"
             >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -54,22 +54,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel DataContext="{Binding SelectedOrder}" 
-                    Margin="386,0,2,222" Grid.ColumnSpan="2" Background="#FFCBEAF7">
+                    Margin="0,2,0,217" Background="#FFCBEAF7">
             <TextBlock Text="Выбранный заказ" Width="126" FontFamily="Cascadia Code"  />
             <TextBlock x:Name="tb1" Text="Номер: " Width="60" FontFamily="Cascadia Code" />
             <TextBox x:Name="tb2" 
                      Text="{Binding OrderId, UpdateSourceTrigger=PropertyChanged}" Width="286" />
             <TextBlock 
                 Text="Статус: " Width="53" FontFamily="Cascadia Code" />
-            <TextBox 
+            <TextBox
                 Text="{Binding IdStatusNavigation.NameStatus, UpdateSourceTrigger=PropertyChanged}" Width="288" />
         </StackPanel>
-        <StackPanel Grid.RowSpan="1" Margin="106,109,106,260" Grid.Column="1">
-            <Button Height="41" 
+        <StackPanel Grid.RowSpan="1" Margin="89,109,99,260">
+            <Button  Style="{DynamicResource ButtonStyle1}" Height="41" 
                     Width="126"
-                    Command="{Binding Sort}"
+                    Command="{Binding NewStat}"
                     Content="Изменить статус" Background="#FFE8F3CC" FontFamily="Cascadia Code"/>
         </StackPanel>
-
     </Grid>
 </Window>

@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 namespace YP2_home;
 
-public class WaiterVM : ViewModelCafe
+public class WaiterModel : ViewModelBase
 {
     private ObservableCollection<Order> collection_ord =
         new(Helper.db.Orders.Include(x => x.IdStatusNavigation).Where(x => x.IdStatus == 1));
@@ -15,9 +15,7 @@ public class WaiterVM : ViewModelCafe
     private Order sOrder;
     private ObservableCollection<Dish> dish = new(Helper.db.Dishes);
     private RelayCommand upd_stat;
-    private RelayCommand norder;
-
-
+    private RelayCommand neworder;
     public RelayCommand Upd_Status
     {
         get
@@ -40,26 +38,19 @@ public class WaiterVM : ViewModelCafe
                            PayOrd = new ObservableCollection<Order>(Helper.db.Orders.Include(x => x.IdStatusNavigation)
                                .Where(x => x.IdStatus == 2));
                            OnPropertyChanged();
-                       }
-                       
+                       }                      
                    }));
         }
     }
-
-    public RelayCommand NOrder
+    public RelayCommand NewOrder
     {
         get
         {
-            return norder ??
-                   (norder = new RelayCommand((x) =>
+            return neworder ??
+                   (neworder = new RelayCommand((x) =>
                    {
                        new Window3().Show();
-                       Helper.db.SaveChanges();
-                       Collection_ord = new ObservableCollection<Order>(Helper.db.Orders.Include(x => x.IdStatusNavigation)
-                           .Where(x => x.IdStatus == 1));
-                       PayOrd = new ObservableCollection<Order>(Helper.db.Orders.Include(x => x.IdStatusNavigation)
-                           .Where(x => x.IdStatus == 2));
-                       OnPropertyChanged();
+                       Helper.db.SaveChanges();                     
                    }));
         }
     }

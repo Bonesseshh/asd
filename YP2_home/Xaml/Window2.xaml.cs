@@ -22,7 +22,7 @@ namespace YP2_home
         public Window2()
         {
             InitializeComponent();
-            DataContext = new WaiterVM();
+            DataContext = new WaiterModel();
         }
     }
 }

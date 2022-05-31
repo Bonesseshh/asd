@@ -22,7 +22,7 @@ namespace YP2_home
         public Window3()
         {
             InitializeComponent();
-            DataContext = new Waiter2VM();
+            DataContext = new WaiterModel2();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

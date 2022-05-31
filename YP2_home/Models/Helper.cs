@@ -8,7 +8,7 @@ namespace YP2_home
 {
     internal class Helper
     {
-        public static localdbContext db = new localdbContext();
-        public static int id_user = new int();
+        public static localdbContext db = new();
+        public static int id_user = new();
     }
 }

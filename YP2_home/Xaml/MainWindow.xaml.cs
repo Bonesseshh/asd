@@ -23,7 +23,7 @@ namespace YP2_home
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new VM_Auth();
+            DataContext = new Authentication();
         }
     }
 }

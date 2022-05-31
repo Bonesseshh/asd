@@ -9,11 +9,13 @@ namespace YP2_home
     {
         public localdbContext()
         {
+            Database.EnsureCreated();
         }
 
         public localdbContext(DbContextOptions<localdbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
 
         public virtual DbSet<Dish> Dishes { get; set; } = null!;

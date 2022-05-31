@@ -22,7 +22,7 @@ namespace YP2_home
         public Window1()
         {
             InitializeComponent();
-            DataContext = new CooksVM();
+            DataContext = new CookerVM();
         }
     }
 }

@@ -3,10 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Windows;
 
 namespace YP2_home;
 
-public class Waiter2VM : ViewModelCafe
+public class WaiterModel2 : ViewModelBase
 {
     private ObservableCollection<Order> ordesCollection = new(Helper.db.Orders.Include(x => x.IdStatusNavigation));
     private ObservableCollection<Dish> dishcCollection = new(Helper.db.Dishes);
@@ -50,7 +51,7 @@ public class Waiter2VM : ViewModelCafe
         }
 
     }
-    public RelayCommand RemoveDish
+    public RelayCommand RemDish
     {
         get
         {
@@ -74,43 +75,40 @@ public class Waiter2VM : ViewModelCafe
                 }));
         }
     }
-    public RelayCommand NewOrder
-    {
-        get
+    public RelayCommand NewOrd => newOrder ??
+        (newOrder = new RelayCommand((x) =>
         {
-            return newOrder ??
-                (newOrder = new RelayCommand((x) =>
+            if (Dish_Col.Count != 0)
+            {
+                Order order = new Order()
                 {
-                    if (Dish_Col.Count != 0)
+                    IdUsers = 1,
+                    IdStatus = 1,
+                    Sum = Sum,
+                    
+                };
+                Helper.db.Orders.Add(order);
+                Helper.db.SaveChanges();
+
+                foreach (Dish? item in Dish_Col)
+                {
+                    DishInOrder dishIns = new()
                     {
-                        Order order = new Order
-                        {
-                            IdStatus = 1,
-                            IdUsers = Helper.id_user,
-                            Sum = Sum,
-                        };
-                        Helper.db.Orders.Add(order);
-                        Helper.db.SaveChanges();
-
-                        foreach (Dish item  in Dish_Col)
-                        {
-                            DishInOrder dishIns = new()
-                            {
-                                IdDish = item.IdDish,
-                                IdOrder = Helper.db.Orders.OrderByDescending(x => x.OrderId).FirstOrDefault().OrderId,
-                            };
-                            Helper.db.DishInOrders.Add(dishIns);
-                            Helper.db.SaveChanges();                           
-                        }
-                        
+                        IdDish = item.IdDish,
+                        IdOrder = Helper.db.Orders.OrderByDescending(x => x.OrderId).FirstOrDefault().OrderId, //Сортировка по убыванию ID, поиск первого (по условию) OrderID
                     };
-                
-                }));
-        }
-    }
+                    Helper.db.DishInOrders.Add(dishIns);
+                    Helper.db.SaveChanges();
+                }
+                MessageBox.Show("Заказ добавлен.");
+            }
+            else
+            {
+                MessageBox.Show("Вы не выбрали блюда.");
+                return;
+            }
 
-   
-
+        }));
     public Dish Dish_Sel2
     {
         get => dish_sel2;

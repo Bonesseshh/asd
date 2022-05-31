@@ -6,29 +6,12 @@ using System.Windows;
 using Microsoft.EntityFrameworkCore;
 namespace YP2_home;
 
-public class VM_Auth : ViewModelCafe
+public class Authentication : ViewModelBase
 {
-    private ObservableCollection<User> selUsers;
     private string login;
     private string password;
     private RelayCommand auth;
 
-    public string Login
-    {
-        get => login;
-        set
-        {
-            login = value;
-        }
-    }
-    public string Password
-    {
-        get => password;
-        set
-        {
-            password = value;
-        }
-    }
     public RelayCommand Auth
     {
         get
@@ -44,22 +27,33 @@ public class VM_Auth : ViewModelCafe
                            return;
                        }
 
-                       if (selUs.IdRole == 1)
+                       else if (selUs.IdRole == 1)
                        {
-                           new Window1().Show();
-                           Helper.id_user = 1;
+                           new Window1().Show();                         
                        }
 
                        else if (selUs.IdRole == 2)
                        {
-                           new Window2().Show();
-                           Helper.id_user = 2;
+                           new Window2().Show();                        
                        }
-                       //else
-                       //{
-                       //    MessageBox.Show("Неправильно введен логин или пароль");
-                       //}
+                       
                    }));
+        }
+    }
+    public string Login
+    {
+        get => login;
+        set
+        {
+            login = value;
+        }
+    }
+    public string Password
+    {
+        get => password;
+        set
+        {
+            password = value;
         }
     }
 

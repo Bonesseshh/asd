@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Добавление заказа" Height="350" Width="600">
     <Window.Resources>
-        <local:Waiter2VM x:Key="Waiter"/>
+        <local:WaiterModel2 x:Key="Waiter"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource Waiter}" Background="#FFCDF1F5">
         <ListBox Margin="0,0,401,0"
@@ -23,10 +23,8 @@
                         <TextBlock 
                             Text="{Binding NameDish}"/>
                     </StackPanel>
-
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
         <StackPanel Margin="310,0,0,10" Background="#FFE7F9E1">
             <TextBlock 
@@ -67,13 +65,13 @@
                 Width="71"
                 Height="30"
                 Content="Убрать"
-                Command="{Binding RemoveDish}"
+                Command="{Binding RemDish}"
                 CommandParameter="{Binding Dish_Sel2}" Background="#FFE7F9E1" FontFamily="Cascadia Code"/>
             <Button 
                 Width="72"
                 Height="30"
                 Content="Заказать"
-                Command="{Binding NewOrder}" Background="#FFE7F9E1" FontFamily="Cascadia Code" Click="Button_Click"/>
+                Command="{Binding NewOrd}" Background="#FFE7F9E1" FontFamily="Cascadia Code" Click="Button_Click"/>
         </StackPanel>
 
 
